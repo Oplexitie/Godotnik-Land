@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://blumv7jgomxy"]
+
+[ext_resource type="Script" path="res://Scripts/Particles/particle.gd" id="1_orobh"]
+[ext_resource type="Texture2D" uid="uid://crqbbq3364oli" path="res://Graphics/Particles/thundershield_sparks.png" id="2_6rdnt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvv4h"]
+atlas = ExtResource("2_6rdnt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scl3i"]
+atlas = ExtResource("2_6rdnt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_viptm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvv4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scl3i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 60.0
+}]
+
+[sub_resource type="Animation" id="Animation_ybcqq"]
+resource_name = "default"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spark1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4, -4), Vector2(-50, -50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spark2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, -4), Vector2(50, -50)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spark3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4, 4), Vector2(-50, 50)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spark4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(50, 50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6w8kv"]
+_data = {
+"default": SubResource("Animation_ybcqq")
+}
+
+[node name="ThunderShieldSparks" type="Node2D"]
+script = ExtResource("1_orobh")
+
+[node name="Spark1" type="AnimatedSprite2D" parent="."]
+position = Vector2(-38.5, -38.5)
+sprite_frames = SubResource("SpriteFrames_viptm")
+autoplay = "default"
+frame_progress = 0.34018
+
+[node name="Spark2" type="AnimatedSprite2D" parent="."]
+position = Vector2(38.5, -38.5)
+sprite_frames = SubResource("SpriteFrames_viptm")
+autoplay = "default"
+frame_progress = 0.34018
+
+[node name="Spark3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-38.5, 38.5)
+sprite_frames = SubResource("SpriteFrames_viptm")
+autoplay = "default"
+frame_progress = 0.34018
+
+[node name="Spark4" type="AnimatedSprite2D" parent="."]
+position = Vector2(38.5, 38.5)
+sprite_frames = SubResource("SpriteFrames_viptm")
+autoplay = "default"
+frame_progress = 0.34018
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6w8kv")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

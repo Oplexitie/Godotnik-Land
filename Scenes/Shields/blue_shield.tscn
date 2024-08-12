@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://buj0mcjw1fgnx"]
+
+[ext_resource type="Script" path="res://Scripts/Shields/States/blue_shield.gd" id="1_yai3v"]
+[ext_resource type="Texture2D" uid="uid://dw1ytib8hgj8k" path="res://Graphics/Shields/blue_shield.png" id="2_hpfc8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wjllq"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_yu502"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 2, 0, 3, 0, 4, 0, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jq45x"]
+_data = {
+"default": SubResource("Animation_yu502")
+}
+
+[node name="BlueShield" type="Node2D"]
+script = ExtResource("1_yai3v")
+invincible = false
+
+[node name="ShieldSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_wjllq")
+texture = ExtResource("2_hpfc8")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShieldSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_jq45x")
+}
+speed_scale = 16.0

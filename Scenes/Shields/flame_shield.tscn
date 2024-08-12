@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlb7yejd1l75p"]
+
+[ext_resource type="Script" path="res://Scripts/Shields/States/flame_shield.gd" id="1_xsbkp"]
+[ext_resource type="AudioStream" uid="uid://cbquikvpl71nm" path="res://Audio/Shields/fire_attack.wav" id="2_qbvar"]
+[ext_resource type="Texture2D" uid="uid://qu24ji8gvr5k" path="res://Graphics/Shields/flame_shield.png" id="2_u11cx"]
+[ext_resource type="Texture2D" uid="uid://68o0kxi3awnx" path="res://Graphics/Shields/flame_shield_attack.png" id="3_nr0fy"]
+
+[sub_resource type="Animation" id="Animation_ayooo"]
+resource_name = "default"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 0, 4, 1, 5, 2, 9, 6, 10, 7, 11, 8, 15, 12, 16, 13, 17, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdsf8"]
+_data = {
+"default": SubResource("Animation_ayooo")
+}
+
+[sub_resource type="Animation" id="Animation_5vsb8"]
+resource_name = "default"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntpyl"]
+_data = {
+"default": SubResource("Animation_5vsb8")
+}
+
+[node name="FlameShield" type="Node2D"]
+script = ExtResource("1_xsbkp")
+invincible = false
+action_audio = ExtResource("2_qbvar")
+
+[node name="ShieldSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("2_u11cx")
+hframes = 6
+vframes = 3
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShieldSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_qdsf8")
+}
+speed_scale = 3.0
+
+[node name="AttackingSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("3_nr0fy")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AttackingSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_ntpyl")
+}
+speed_scale = 4.0

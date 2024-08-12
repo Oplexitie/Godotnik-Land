@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PlayerCollision" load_steps=2 format=3 uid="uid://dk5ioa4wl405e"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Ressources/player_collision.gd" id="1_tqcvj"]
+
+[resource]
+script = ExtResource("1_tqcvj")
+offset = Vector2(0, 0)
+height_radius = 19.0
+width_radius = 9.0
+push_height_offset = 8.0
+push_radius = 1.0
+ground_extension = 17.0

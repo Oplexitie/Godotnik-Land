@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://dgabxi0sety0a"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Ressources/player_stats.gd" id="1_lqsq0"]
+
+[resource]
+script = ExtResource("1_lqsq0")
+acceleration = 168.75
+deceleration = 1800.0
+friction = 168.75
+slope_factor = 450.0
+top_speed = 360.0
+dash_speed = 600.0
+min_speed_to_brake = 240.0
+min_speed_to_roll = 60.0
+unroll_speed = 30.0
+slope_roll_up = 281.25
+slope_roll_down = 1125.0
+roll_deceleration = 450.0
+roll_friction = 84.375
+air_acceleration = 337.5
+gravity = 787.5
+max_jump_height = 390.0
+min_jump_height = 240.0
+slide_angle = 45.0
+fall_angle = 90.0
+min_speed_to_fall = 150.0

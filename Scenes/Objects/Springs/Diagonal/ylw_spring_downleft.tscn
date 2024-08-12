@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://b30udqmj0xyyi"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Springs/diagonal_spring.gd" id="1_tfe5r"]
+[ext_resource type="AudioStream" uid="uid://cisligs4xtrwp" path="res://Audio/Objects/spring.wav" id="2_58kaw"]
+[ext_resource type="Texture2D" uid="uid://brotu5paq453g" path="res://Graphics/Objects/Springs/yellow_spring_diagonal.png" id="3_7la77"]
+[ext_resource type="Script" path="res://Scripts/Objects/solid_object.gd" id="4_u54mc"]
+
+[sub_resource type="Animation" id="Animation_fhsu2"]
+resource_name = "activate"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_0tb7w"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg207"]
+_data = {
+"activate": SubResource("Animation_fhsu2"),
+"idle": SubResource("Animation_0tb7w")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_swjq2"]
+animation = &"activate"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yh88l"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_oj4cj"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_65hkk"]
+graph_offset = Vector2(-370.668, -31.6168)
+nodes/activate/node = SubResource("AnimationNodeAnimation_swjq2")
+nodes/activate/position = Vector2(-80, 160)
+nodes/idle/node = SubResource("AnimationNodeAnimation_yh88l")
+nodes/idle/position = Vector2(-80, 20)
+nodes/output/position = Vector2(340, 80)
+nodes/state/node = SubResource("AnimationNodeOneShot_oj4cj")
+nodes/state/position = Vector2(160, 60)
+node_connections = [&"output", 0, &"state", &"state", 0, &"idle", &"state", 1, &"activate"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4baq"]
+size = Vector2(32, 32)
+
+[node name="YlwSpringDownLeft" type="Node2D"]
+script = ExtResource("1_tfe5r")
+vertical = 1
+spring_audio = ExtResource("2_58kaw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-7, 7)
+texture = ExtResource("3_7la77")
+flip_h = true
+flip_v = true
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_cg207")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprite"]
+tree_root = SubResource("AnimationNodeBlendTree_65hkk")
+anim_player = NodePath("../AnimationPlayer")
+parameters/state/active = false
+parameters/state/internal_active = false
+parameters/state/request = 0
+
+[node name="SolidObject" type="StaticBody2D" parent="."]
+script = ExtResource("4_u54mc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SolidObject"]
+shape = SubResource("RectangleShape2D_k4baq")
+
+[connection signal="player_ceiling_collision" from="SolidObject" to="." method="_on_SolidObject_player_ceiling_collision"]
+[connection signal="player_right_wall_collision" from="SolidObject" to="." method="_on_SolidObject_player_right_wall_collision"]

@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5me1bke7whng"]
+
+[ext_resource type="Script" path="res://Scripts/HUD/hud.gd" id="1_5ea3d"]
+[ext_resource type="Texture2D" uid="uid://ch0yve7vs4yhc" path="res://Graphics/HUD/hud.png" id="2_yne8w"]
+[ext_resource type="FontFile" uid="uid://db6nsl0ai0mjo" path="res://Fonts/hud_numbers.fnt" id="3_0pvo8"]
+[ext_resource type="Texture2D" uid="uid://8ejmrtjnvs7e" path="res://Graphics/HUD/lifes.png" id="4_hup3w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc3ik"]
+atlas = ExtResource("4_hup3w")
+region = Rect2(0, 0, 23, 21)
+
+[node name="Gameplay_HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 426.0
+offset_bottom = 240.0
+script = ExtResource("1_5ea3d")
+
+[node name="Display" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 115.0
+offset_bottom = 58.0
+texture = ExtResource("2_yne8w")
+
+[node name="Score" type="Label" parent="Display"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1.0
+offset_right = 104.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("3_0pvo8")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Rings" type="Label" parent="Display"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 33.0
+offset_right = 80.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_0pvo8")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Timer" type="Control" parent="Display"]
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 32.0
+
+[node name="Minutes" type="Label" parent="Display/Timer"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 1.0
+offset_right = 8.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("3_0pvo8")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="Display/Timer"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 1.0
+offset_right = 32.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("3_0pvo8")
+text = "00
+"
+horizontal_alignment = 2
+
+[node name="Milliseconds" type="Label" parent="Display/Timer"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1.0
+offset_right = 56.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("3_0pvo8")
+text = "00
+"
+horizontal_alignment = 2
+
+[node name="Lives" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 208.0
+offset_right = 35.0
+offset_bottom = 229.0
+texture = SubResource("AtlasTexture_oc3ik")
+
+[node name="Counter" type="Label" parent="Lives"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("3_0pvo8")
+text = "0"
+horizontal_alignment = 2

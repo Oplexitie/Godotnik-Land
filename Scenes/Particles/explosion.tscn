@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b72awigk0020g"]
+
+[ext_resource type="Texture2D" uid="uid://bnbp8gohtvdlt" path="res://Graphics/Particles/Explosions/explosion_0.png" id="1_ix0d8"]
+[ext_resource type="Script" path="res://Scripts/Particles/particle.gd" id="2_4du41"]
+
+[sub_resource type="Animation" id="Animation_ypprl"]
+resource_name = "explosion"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i2nrc"]
+_data = {
+"explosion": SubResource("Animation_ypprl")
+}
+
+[node name="Explosion" type="Sprite2D"]
+visible = false
+texture = ExtResource("1_ix0d8")
+hframes = 5
+script = ExtResource("2_4du41")
+animation_name = "explosion"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i2nrc")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbgbkpegdg4uq"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player_layer_controller.gd" id="1_l8x6r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phhce"]
+size = Vector2(12, 136)
+
+[node name="UpperTileActivatorBig" type="Area2D"]
+script = ExtResource("1_l8x6r")
+wall_layer = 5
+ground_layer = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_phhce")
+
+[connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]

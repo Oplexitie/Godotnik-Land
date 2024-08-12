@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgm3lqibcamr"]
+
+[ext_resource type="Script" path="res://Scripts/Shields/States/thunder_shield.gd" id="1_eid5j"]
+[ext_resource type="Texture2D" uid="uid://bekcwmmjpnhjx" path="res://Graphics/Shields/thunder_shield.png" id="2_1bgc8"]
+[ext_resource type="AudioStream" uid="uid://ba8nnq3xmamvh" path="res://Audio/Shields/thunder_bounce.wav" id="3_exc23"]
+
+[sub_resource type="Animation" id="Animation_07itv"]
+resource_name = "default"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 1, 0, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ftp2q"]
+_data = {
+"default": SubResource("Animation_07itv")
+}
+
+[node name="ThunderShield" type="Node2D"]
+script = ExtResource("1_eid5j")
+invincible = false
+action_audio = ExtResource("3_exc23")
+
+[node name="ShieldSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("2_1bgc8")
+hframes = 3
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShieldSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_ftp2q")
+}
