@@ -10,7 +10,7 @@ class_name Zone
 @export var limit_top: int = 0
 @export var limit_bottom: int = 10000
 
-@onready var start_point: Node2D = $StartPoint
+@onready var start_point: Node2D = $Level/StartPoint
 
 var player: Player
 var camera: PlayerCamera
