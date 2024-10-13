@@ -8,13 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://wqr7nvc1dopp" path="res://Graphics/Tilesets/TilesetPlatform.png" id="5_buyrs"]
 [ext_resource type="Texture2D" uid="uid://blnwwp62u27dk" path="res://Graphics/Tilesets/TilesetHigh.png" id="7_ouygy"]
 [ext_resource type="Texture2D" uid="uid://c17ffmlvit4yi" path="res://Graphics/Tilesets/TilesetLow.png" id="8_jcxho"]
-[ext_resource type="PackedScene" uid="uid://gyw8q5tchewd" path="res://Scenes/Objects/Platforms/plaform.tscn" id="9_pfan1"]
 [ext_resource type="PackedScene" uid="uid://dw66yivu3hdn4" path="res://Scenes/Objects/Springs/Regular/ylw_spring_right.tscn" id="9_urudq"]
 [ext_resource type="PackedScene" uid="uid://d5vssrbntite" path="res://Scenes/Objects/Springs/Diagonal/ylw_spring_upright.tscn" id="11_4kklx"]
 [ext_resource type="PackedScene" uid="uid://bbgbkpegdg4uq" path="res://Scenes/LayerControllers/UpperTileActivatorBig.tscn" id="13_f67ml"]
 [ext_resource type="PackedScene" uid="uid://b0s7qggtl7ii5" path="res://Scenes/LayerControllers/LowerTileActivatorBig.tscn" id="14_mekeq"]
 [ext_resource type="PackedScene" uid="uid://ci6ugp1l6d1mi" path="res://Scenes/LayerControllers/UpperTileActivatorSmall.tscn" id="15_0jmp8"]
 [ext_resource type="PackedScene" uid="uid://ched7ddktboi2" path="res://Scenes/LayerControllers/LowerTileActivatorSmall.tscn" id="16_6337p"]
+[ext_resource type="PackedScene" uid="uid://balbedvby6ni6" path="res://Scenes/Objects/Platforms/platform.tscn" id="16_kh7ac"]
 [ext_resource type="PackedScene" uid="uid://ci7486pfi544l" path="res://Scenes/Objects/Monitors/monitor_ring.tscn" id="17_ejfdh"]
 [ext_resource type="PackedScene" uid="uid://mi6lmxt6kfe5" path="res://Scenes/Objects/Monitors/monitor_bubbleshield.tscn" id="18_dn0sg"]
 [ext_resource type="PackedScene" uid="uid://cyqswwcsuhawc" path="res://Scenes/Objects/Monitors/monitor_flameshield.tscn" id="19_mgpji"]
@@ -4224,8 +4224,7 @@ position = Vector2(24, 208)
 [node name="MonitorLife" parent="Level/Objects/Items" instance=ExtResource("22_d5sks")]
 position = Vector2(56, 208)
 
-[node name="Plaform" parent="Level/Objects" instance=ExtResource("9_pfan1")]
-position = Vector2(408, 315)
+[node name="Platform" parent="Level/Objects" instance=ExtResource("16_kh7ac")]
 
 [node name="YlwSpringLeft" parent="Level/Objects" instance=ExtResource("9_urudq")]
 position = Vector2(304, 432)
@@ -4261,3 +4260,5 @@ z_index = 2
 use_parent_material = true
 tile_map_data = PackedByteArray("AABSABMAAgAIACQAAABSAB0AAgAIAC0AAABTABMAAgAJACQAAABTAB0AAgAJAC0AAABUABMAAgAKACQAAABUABQAAgAKACUAAABUABwAAgAKACwAAABUAB0AAgAKAC0AAABVABMAAgACAAEAAABVABQAAgALACUAAABVABUAAgALACYAAABVABsAAgALACsAAABVABwAAgALACwAAABVAB0AAgACAAEAAABWABMAAgACAAEAAABWABQAAgACAAEAAABWABUAAgAMACYAAABWABYAAgAMACcAAABWABcAAgAMACgAAABWABkAAgAMACkAAABWABoAAgAMACoAAABWABsAAgAMACsAAABWABwAAgACAAEAAABWAB0AAgACAAEAAABXABMAAgACAAEAAABXABQAAgACAAEAAABXABUAAgACAAEAAABXABYAAgACAAEAAABXABcAAgANACgAAABXABgAAgABAAEAAABXABkAAgANACkAAABXABoAAgACAAEAAABXABsAAgACAAEAAABXABwAAgACAAEAAABXAB0AAgACAAEAAABYABMAAgADAAEAAABYABQAAgADAAEAAABYABUAAgADAAEAAABYABYAAgADAAEAAABYABcAAgADAAEAAABYABgAAgADAAEAAABYABkAAgADAAEAAABYABoAAgADAAEAAABYABsAAgADAAEAAABYABwAAgADAAEAAABYAB0AAgADAAEAAABSAB4AAAACAAAAAABTAB4AAAACAAAAAABUAB4AAAACAAAAAABVAB4AAAACAAAAAABWAB4AAAACAAAAAABXAB4AAAACAAAAAABYAB4AAAACAAAAAAA=")
 tile_set = SubResource("TileSet_m3ysh")
+
+[node name="Actors" type="Node2D" parent="."]

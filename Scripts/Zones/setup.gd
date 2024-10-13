@@ -10,8 +10,6 @@ class_name Zone
 @export var limit_top: int = 0
 @export var limit_bottom: int = 10000
 
-@onready var start_point: Node2D = $Level/StartPoint
-
 var player: Player
 var camera: PlayerCamera
 
@@ -22,9 +20,9 @@ func _ready():
 
 func initialize_player():
 	player = player_resource.instantiate()
-	player.position = start_point.position
+	player.position = $Level/StartPoint.position
 	player.lock_to_limits(limit_left, limit_right)
-	add_child(player)
+	$Actors.add_child(player)
 
 func initialize_camera():
 	camera = camera_resource.instantiate()

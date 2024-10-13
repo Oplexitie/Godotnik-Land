@@ -15,7 +15,6 @@ signal ground_enter
 @onready var shields = $Shields as ShieldsManager
 @onready var audios = $Audios as PlayerAudio
 
-
 @onready var initial_parent = get_parent()
 
 var world: World2D
@@ -150,9 +149,10 @@ func handle_skin(delta):
 			target_angle = GoUtils.get_radian_from(ground_normal)
 	
 	if not is_rolling:
-		target_angle = lerp_angle(last_rotation, target_angle, rotation_speed * delta)
-		skin.rotation = target_angle
+		if velocity.x < current_stats.top_speed:
+			target_angle = lerp_angle(last_rotation, target_angle, rotation_speed * delta)
 	
+	skin.rotation = target_angle
 	last_rotation = target_angle
 
 func handle_wall_collision():
