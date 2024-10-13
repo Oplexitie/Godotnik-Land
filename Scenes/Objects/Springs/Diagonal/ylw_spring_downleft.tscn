@@ -52,7 +52,6 @@ animation = &"idle"
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_oj4cj"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_65hkk"]
-graph_offset = Vector2(-370.668, -31.6168)
 nodes/activate/node = SubResource("AnimationNodeAnimation_swjq2")
 nodes/activate/position = Vector2(-80, 160)
 nodes/idle/node = SubResource("AnimationNodeAnimation_yh88l")
