@@ -2,6 +2,9 @@ extends Node2D
 class_name Player
 
 signal ground_enter
+signal score_added
+signal ring_added
+signal life_added
 
 @export var bounds: Array[Resource]
 @export var stats: Array[Resource]
@@ -21,7 +24,6 @@ var world: World2D
 var current_bounds: PlayerCollision
 var current_stats: PlayerStats
 
-var collider: Area2D
 var collider_shape: RectangleShape2D
 
 var velocity: Vector2
@@ -30,6 +32,7 @@ var input_direction: Vector2
 
 var ground_angle: float
 var absolute_ground_angle: float
+var last_rotation: float
 var input_dot_velocity: float
 var control_lock_timer: float
 
@@ -38,17 +41,14 @@ var limit_right: float
 
 var is_jumping: bool
 var is_rolling: bool
-var is_control_locked: bool
-var is_locked_to_limits: bool
-
 var __is_grounded: bool
-var is_pushing: bool
-
 var isnt_grounded_left: bool
 var isnt_grounded_right: bool
 var isnt_grounded_center: bool
+var is_pushing: bool
 
-var last_rotation: float
+var is_control_locked: bool
+var is_locked_to_limits: bool
 
 func _ready():
 	initialize_collider()
@@ -68,7 +68,7 @@ func _physics_process(delta):
 func initialize_collider():
 	var collision: CollisionShape2D = CollisionShape2D.new()
 	collider_shape = RectangleShape2D.new()
-	collider = Area2D.new()
+	var collider: Area2D = Area2D.new()
 	collision.shape = collider_shape
 	collider.add_child(collision)
 	add_child(collider)

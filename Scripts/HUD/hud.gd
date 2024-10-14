@@ -9,12 +9,13 @@ class_name HUD
 @onready var seconds_label: Label = $Display/Timer/Seconds
 @onready var milliseconds_label: Label = $Display/Timer/Milliseconds
 
+@onready var hud_manager: HudManager = get_parent()
+
 func _ready():
-	connect_signals()
 	initialize_labels()
 
 func _process(_delta):
-	var time: float = ScoreManager.time
+	var time: float = hud_manager.time
 	var minutes:int = int(time / 60)
 	var seconds:int = int(time) % 60
 	var milliseconds:int = int(time * 100) % 100
@@ -23,15 +24,10 @@ func _process(_delta):
 	seconds_label.text = "%02d" % seconds
 	milliseconds_label.text = "%02d" % milliseconds
 
-func connect_signals():
-	ScoreManager.score_added.connect(on_score_added)
-	ScoreManager.ring_added.connect(on_ring_added)
-	ScoreManager.life_added.connect(on_life_added)
-
 func initialize_labels():
-	score_label.text = str(ScoreManager.score)
-	rings_label.text = str(ScoreManager.rings)
-	lifes_label.text = str(ScoreManager.lives)
+	score_label.text = str(hud_manager.score)
+	rings_label.text = str(hud_manager.rings)
+	lifes_label.text = str(hud_manager.lives)
 
 func on_score_added(score: int):
 	score_label.text = str(score)

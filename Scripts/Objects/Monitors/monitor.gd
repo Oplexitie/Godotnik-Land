@@ -50,14 +50,14 @@ func destroy():
 	solid_object.set_enabled(false)
 	animation_tree.set("parameters/state/transition_request", 1)
 
-func handle_item(player : Player):
+func handle_item(player: Player):
 	destroy()
 	await tree.create_timer(0.5).timeout
 	
 	AudioManager.play_sfx(jingle_audio)
-	ScoreManager.add_score(score)
-	ScoreManager.add_ring(rings)
-	ScoreManager.add_life(lives)
+	player.emit_signal("score_added",score)
+	player.emit_signal("ring_added",rings)
+	player.emit_signal("life_added",lives)
 	
 	if(shield_type): player.shields.change(shield_type)
 	

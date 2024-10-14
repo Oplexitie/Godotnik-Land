@@ -11,7 +11,6 @@ class_name Zone
 @export var limit_bottom: int = 10000
 
 var player: Player
-var camera: PlayerCamera
 
 func _ready():
 	initialize_player()
@@ -25,11 +24,14 @@ func initialize_player():
 	$Actors.add_child(player)
 
 func initialize_camera():
-	camera = camera_resource.instantiate()
+	var camera: PlayerCamera = camera_resource.instantiate()
 	camera.set_player(player)
 	camera.set_limits(limit_left, limit_right, limit_top, limit_bottom)
 	add_child(camera)
 
 func initialize_hud():
-	var hud = hud_resource.instantiate()
+	var hud: HudManager = hud_resource.instantiate()
 	add_child(hud)
+	player.score_added.connect(hud.add_score)
+	player.ring_added.connect(hud.add_ring)
+	player.life_added.connect(hud.add_life)

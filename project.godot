@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManager="*res://Scripts/Autoload/AudioManager/audio_manager.gd"
-ScoreManager="*res://Scripts/Autoload/score_manager.gd"
 
 [debug]
 
