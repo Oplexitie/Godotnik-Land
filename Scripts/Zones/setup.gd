@@ -12,26 +12,23 @@ class_name Zone
 
 var player: Player
 
-func _ready():
+func _ready() -> void:
 	initialize_player()
 	initialize_camera()
 	initialize_hud()
 
-func initialize_player():
+func initialize_player() -> void:
 	player = player_resource.instantiate()
 	player.position = $Level/StartPoint.position
 	player.lock_to_limits(limit_left, limit_right)
-	$Actors.add_child(player)
+	$Level/Actors.add_child(player)
 
-func initialize_camera():
+func initialize_camera() -> void:
 	var camera: PlayerCamera = camera_resource.instantiate()
 	camera.set_player(player)
 	camera.set_limits(limit_left, limit_right, limit_top, limit_bottom)
 	add_child(camera)
 
-func initialize_hud():
+func initialize_hud() -> void:
 	var hud: HudManager = hud_resource.instantiate()
 	add_child(hud)
-	player.score_added.connect(hud.add_score)
-	player.ring_added.connect(hud.add_ring)
-	player.life_added.connect(hud.add_life)

@@ -1,8 +1,8 @@
 extends Node
 class_name GoUtils
 
-const SHALLOW_ANGLE = 23
-const HALF_STEEP_ANGLE = 45
+const SHALLOW_ANGLE: int = 23
+const HALF_STEEP_ANGLE: int = 45
 
 static func get_angle_from(normal: Vector2) -> float:
 	var radians: float = normal.angle_to(Vector2.UP)

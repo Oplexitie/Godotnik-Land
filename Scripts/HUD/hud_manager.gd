@@ -14,12 +14,20 @@ var time_stoped: bool
 
 @onready var gameplay_hud: HUD = $Gameplay_HUD
 
+func _ready() -> void:
+	initialize_signals()
+
 func _process(delta):
 	handle_time(delta)
 
+func initialize_signals() -> void:
+	EventBus.add_signal("add_score",add_score)
+	EventBus.add_signal("add_ring",add_ring)
+	EventBus.add_signal("add_life",add_life)
+
 func handle_time(delta: float):
 	if not time_stoped:
-		var next_time = time + delta
+		var next_time: float = time + delta
 		if (next_time < TIME_LIMIT):
 			time += delta
 		else:

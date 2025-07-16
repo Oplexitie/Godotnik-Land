@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dltlcd0j3ijn3"]
 
-[ext_resource type="Script" path="res://Scripts/HUD/hud_manager.gd" id="1_s0c85"]
+[ext_resource type="Script" uid="uid://1b0208gy5wx1" path="res://Scripts/HUD/hud_manager.gd" id="1_s0c85"]
 [ext_resource type="PackedScene" uid="uid://c5me1bke7whng" path="res://Scenes/HUD/hud_gameplay.tscn" id="1_ucahb"]
 
 [node name="HUD" type="CanvasLayer"]

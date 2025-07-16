@@ -15,23 +15,22 @@ class_name ShieldsManager
 
 var current_shield: Shield
 
-func _ready():
+func _ready() -> void:
 	change(default_shield)
 
-func change(to: String):
+func change(to: String) -> void:
 	if current_shield:
 		current_shield.deactivate()
 	
 	current_shield = shields[to]
 	current_shield.activate(shield_user)
 
-func change_to_default():
+func change_to_default() -> void:
 	change(default_shield)
 
-func use_current():
+func use_current() -> void:
 	if current_shield:
 		current_shield.action()
 
-func cancel_current():
-	if current_shield == shields.BubbleShield:
-		current_shield.cancel_action()
+func cancel_current() -> void:
+	current_shield.cancel_action()

@@ -1,24 +1,24 @@
 [gd_scene load_steps=47 format=3 uid="uid://bca4qab41vad"]
 
-[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_as1of"]
+[ext_resource type="Script" uid="uid://b50lttjglbbl6" path="res://Scripts/Player/player.gd" id="1_as1of"]
 [ext_resource type="Resource" uid="uid://dk5ioa4wl405e" path="res://Resources/Player/Collision/player_normal_collider.tres" id="2_2o7k1"]
-[ext_resource type="Script" path="res://Scripts/Player/player_skin.gd" id="2_b8ilv"]
+[ext_resource type="Script" uid="uid://v5l0if1yegyn" path="res://Scripts/Player/player_skin.gd" id="2_b8ilv"]
 [ext_resource type="Resource" uid="uid://dedpvf2mtys8x" path="res://Resources/Player/Collision/player_small_collider.tres" id="3_my7ga"]
 [ext_resource type="Resource" uid="uid://dgabxi0sety0a" path="res://Resources/Player/Stats/sonic_stats.tres" id="4_27jja"]
-[ext_resource type="Script" path="res://Scripts/Player/player_state_machine.gd" id="5_1nibi"]
-[ext_resource type="Script" path="res://Scripts/Player/States/regular_player_state.gd" id="6_cjj8w"]
-[ext_resource type="Script" path="res://Scripts/Player/States/rolling_player_state.gd" id="7_vphac"]
-[ext_resource type="Script" path="res://Scripts/Player/States/braking_player_state.gd" id="8_or0v3"]
-[ext_resource type="Script" path="res://Scripts/Player/States/air_player_state.gd" id="9_noakl"]
-[ext_resource type="Script" path="res://Scripts/Player/States/spring_player_state.gd" id="10_hpg18"]
-[ext_resource type="Script" path="res://Scripts/Shields/shields_manager.gd" id="11_i16pf"]
+[ext_resource type="Script" uid="uid://ch0xop353bnay" path="res://Scripts/Player/player_state_machine.gd" id="5_1nibi"]
+[ext_resource type="Script" uid="uid://d03b6fyayoxqe" path="res://Scripts/Player/States/regular_player_state.gd" id="6_cjj8w"]
+[ext_resource type="Script" uid="uid://bl1aq8dxn5f2o" path="res://Scripts/Player/States/rolling_player_state.gd" id="7_vphac"]
+[ext_resource type="Script" uid="uid://cl5w1x7eci6f4" path="res://Scripts/Player/States/braking_player_state.gd" id="8_or0v3"]
+[ext_resource type="Script" uid="uid://s55avb8flkav" path="res://Scripts/Player/States/air_player_state.gd" id="9_noakl"]
+[ext_resource type="Script" uid="uid://choh76rorunx8" path="res://Scripts/Player/States/spring_player_state.gd" id="10_hpg18"]
+[ext_resource type="Script" uid="uid://wtkgui8indj" path="res://Scripts/Shields/shields_manager.gd" id="11_i16pf"]
 [ext_resource type="PackedScene" uid="uid://cnq81lphj4gy3" path="res://Scenes/Shields/insta_shield.tscn" id="12_5cv2y"]
 [ext_resource type="Texture2D" uid="uid://1pivom1edi72" path="res://Graphics/Player/sonic.png" id="12_g5b1j"]
 [ext_resource type="PackedScene" uid="uid://buj0mcjw1fgnx" path="res://Scenes/Shields/blue_shield.tscn" id="13_qgwcw"]
 [ext_resource type="PackedScene" uid="uid://dhasslaqh2xav" path="res://Scenes/Shields/bubble_shield.tscn" id="14_yjkmx"]
 [ext_resource type="PackedScene" uid="uid://dlb7yejd1l75p" path="res://Scenes/Shields/flame_shield.tscn" id="15_u0anh"]
 [ext_resource type="PackedScene" uid="uid://bgm3lqibcamr" path="res://Scenes/Shields/thunder_shield.tscn" id="16_coh76"]
-[ext_resource type="Script" path="res://Scripts/Player/player_audio.gd" id="17_06wxb"]
+[ext_resource type="Script" uid="uid://bele1jgv43jk3" path="res://Scripts/Player/player_audio.gd" id="17_06wxb"]
 [ext_resource type="AudioStream" uid="uid://0t0s6laxbtvf" path="res://Audio/Player/jump.wav" id="18_x16jb"]
 [ext_resource type="AudioStream" uid="uid://cn3sh8cyf6vo7" path="res://Audio/Player/brake.wav" id="19_ijvsx"]
 [ext_resource type="AudioStream" uid="uid://b2btiw0b1gpyj" path="res://Audio/Player/spin.wav" id="20_14gyk"]
@@ -194,16 +194,16 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aubw6"]
 _data = {
-"balance_back": SubResource("Animation_7lauf"),
-"balance_front": SubResource("Animation_j4267"),
-"corkscrew": SubResource("Animation_uwcay"),
-"idle": SubResource("Animation_c0fn1"),
-"peel_out": SubResource("Animation_260b1"),
-"push": SubResource("Animation_tkng6"),
-"rolling": SubResource("Animation_g6eqf"),
-"running": SubResource("Animation_pu2fv"),
-"skidding": SubResource("Animation_sgi1w"),
-"walking": SubResource("Animation_vqk8p")
+&"balance_back": SubResource("Animation_7lauf"),
+&"balance_front": SubResource("Animation_j4267"),
+&"corkscrew": SubResource("Animation_uwcay"),
+&"idle": SubResource("Animation_c0fn1"),
+&"peel_out": SubResource("Animation_260b1"),
+&"push": SubResource("Animation_tkng6"),
+&"rolling": SubResource("Animation_g6eqf"),
+&"running": SubResource("Animation_pu2fv"),
+&"skidding": SubResource("Animation_sgi1w"),
+&"walking": SubResource("Animation_vqk8p")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kj1wh"]
@@ -360,7 +360,7 @@ script = ExtResource("2_b8ilv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Skin"]
 libraries = {
-"": SubResource("AnimationLibrary_aubw6")
+&"": SubResource("AnimationLibrary_aubw6")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="Skin"]

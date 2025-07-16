@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b72awigk0020g"]
 
 [ext_resource type="Texture2D" uid="uid://bnbp8gohtvdlt" path="res://Graphics/Particles/Explosions/explosion_0.png" id="1_ix0d8"]
-[ext_resource type="Script" path="res://Scripts/Particles/particle.gd" id="2_4du41"]
+[ext_resource type="Script" uid="uid://g0bu83d03te3" path="res://Scripts/Particles/particle.gd" id="2_4du41"]
 
 [sub_resource type="Animation" id="Animation_ypprl"]
 resource_name = "explosion"
@@ -21,7 +21,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i2nrc"]
 _data = {
-"explosion": SubResource("Animation_ypprl")
+&"explosion": SubResource("Animation_ypprl")
 }
 
 [node name="Explosion" type="Sprite2D"]
@@ -33,7 +33,7 @@ animation_name = "explosion"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_i2nrc")
+&"": SubResource("AnimationLibrary_i2nrc")
 }
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

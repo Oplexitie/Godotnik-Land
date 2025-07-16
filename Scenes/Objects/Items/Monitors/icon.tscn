@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh2utgvcsy3y4"]
+
+[ext_resource type="Texture2D" uid="uid://c1i3mfdpaoo6c" path="res://Graphics/Objects/Monitors/icons.png" id="1_ohsba"]
+[ext_resource type="Script" uid="uid://baeefbsdu5u3w" path="res://Scripts/Objects/Items/Monitors/icon.gd" id="2_5pma4"]
+
+[node name="Icon" type="Sprite2D"]
+texture = ExtResource("1_ohsba")
+offset = Vector2(0, -4)
+hframes = 5
+vframes = 3
+script = ExtResource("2_5pma4")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

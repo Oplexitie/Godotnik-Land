@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://buj0mcjw1fgnx"]
 
-[ext_resource type="Script" path="res://Scripts/Shields/States/blue_shield.gd" id="1_yai3v"]
+[ext_resource type="Script" uid="uid://bbetp32xeiqme" path="res://Scripts/Shields/States/blue_shield.gd" id="1_yai3v"]
 [ext_resource type="Texture2D" uid="uid://dw1ytib8hgj8k" path="res://Graphics/Shields/blue_shield.png" id="2_hpfc8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wjllq"]
@@ -24,7 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jq45x"]
 _data = {
-"default": SubResource("Animation_yu502")
+&"default": SubResource("Animation_yu502")
 }
 
 [node name="BlueShield" type="Node2D"]

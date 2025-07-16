@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://w6ep06d2dv1x"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Springs/diagonal_spring.gd" id="1_aov36"]
+[ext_resource type="Script" uid="uid://bfhgmr2l6o7qk" path="res://Scripts/Objects/Springs/diagonal_spring.gd" id="1_aov36"]
 [ext_resource type="AudioStream" uid="uid://cisligs4xtrwp" path="res://Audio/Objects/spring.wav" id="2_myko2"]
 [ext_resource type="Texture2D" uid="uid://brotu5paq453g" path="res://Graphics/Objects/Springs/yellow_spring_diagonal.png" id="3_0ebrw"]
-[ext_resource type="Script" path="res://Scripts/Objects/solid_object.gd" id="4_q0kd8"]
+[ext_resource type="Script" uid="uid://hg2cqfc7lqjg" path="res://Scripts/Objects/solid_object.gd" id="4_q0kd8"]
 
 [sub_resource type="Animation" id="Animation_fhsu2"]
 resource_name = "activate"
@@ -39,8 +39,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cg207"]
 _data = {
-"activate": SubResource("Animation_fhsu2"),
-"idle": SubResource("Animation_0tb7w")
+&"activate": SubResource("Animation_fhsu2"),
+&"idle": SubResource("Animation_0tb7w")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_swjq2"]
@@ -79,7 +79,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 libraries = {
-"": SubResource("AnimationLibrary_cg207")
+&"": SubResource("AnimationLibrary_cg207")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]
@@ -95,5 +95,5 @@ script = ExtResource("4_q0kd8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SolidObject"]
 shape = SubResource("RectangleShape2D_k4baq")
 
-[connection signal="player_ceiling_collision" from="SolidObject" to="." method="_on_SolidObject_player_ceiling_collision"]
-[connection signal="player_left_wall_collision" from="SolidObject" to="." method="_on_SolidObject_player_left_wall_collision"]
+[connection signal="player_ceiling_collision" from="SolidObject" to="." method="_on_SolidObject_player_ground_collision"]
+[connection signal="player_left_wall_collision" from="SolidObject" to="." method="_on_SolidObject_player_wall_collision"]

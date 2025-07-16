@@ -13,12 +13,13 @@ config_version=5
 config/name="Godotnik Land"
 config/tags=PackedStringArray("framework", "sonic")
 run/main_scene="res://Scenes/Zones/zone.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 AudioManager="*res://Scripts/Autoload/AudioManager/audio_manager.gd"
+EventBus="*res://Scripts/Autoload/event_bus.gd"
 
 [debug]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cnq81lphj4gy3"]
 
-[ext_resource type="Script" path="res://Scripts/Shields/States/insta_shield.gd" id="1_cdlkr"]
+[ext_resource type="Script" uid="uid://bqmbnfxgky21q" path="res://Scripts/Shields/States/insta_shield.gd" id="1_cdlkr"]
 [ext_resource type="Texture2D" uid="uid://srr8bpjv7l7t" path="res://Graphics/Shields/insta_shield.png" id="2_gaf3x"]
 [ext_resource type="AudioStream" uid="uid://bnrcas6ifsu7h" path="res://Audio/Shields/insta_shield.wav" id="3_gnmgf"]
 
@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3fe2q"]
 _data = {
-"default": SubResource("Animation_5vyto")
+&"default": SubResource("Animation_5vyto")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ut76l"]

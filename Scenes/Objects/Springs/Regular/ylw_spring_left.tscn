@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://3w77gyai6gxu"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Springs/spring.gd" id="1_jkja0"]
+[ext_resource type="Script" uid="uid://qxcfatsnh4ug" path="res://Scripts/Objects/Springs/spring.gd" id="1_jkja0"]
 [ext_resource type="AudioStream" uid="uid://cisligs4xtrwp" path="res://Audio/Objects/spring.wav" id="2_ug3gh"]
 [ext_resource type="Texture2D" uid="uid://c2ua420yt6j7p" path="res://Graphics/Objects/Springs/yellow_spring_horizontal.png" id="3_0ykt8"]
-[ext_resource type="Script" path="res://Scripts/Objects/solid_object.gd" id="4_dp2yf"]
+[ext_resource type="Script" uid="uid://hg2cqfc7lqjg" path="res://Scripts/Objects/solid_object.gd" id="4_dp2yf"]
 
 [sub_resource type="Animation" id="Animation_fhsu2"]
 resource_name = "activate"
@@ -39,8 +39,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cg207"]
 _data = {
-"activate": SubResource("Animation_fhsu2"),
-"idle": SubResource("Animation_0tb7w")
+&"activate": SubResource("Animation_fhsu2"),
+&"idle": SubResource("Animation_0tb7w")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_swjq2"]
@@ -77,7 +77,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 libraries = {
-"": SubResource("AnimationLibrary_cg207")
+&"": SubResource("AnimationLibrary_cg207")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]

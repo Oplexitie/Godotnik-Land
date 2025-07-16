@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dlb7yejd1l75p"]
 
-[ext_resource type="Script" path="res://Scripts/Shields/States/flame_shield.gd" id="1_xsbkp"]
+[ext_resource type="Script" uid="uid://cpc82bspkfi38" path="res://Scripts/Shields/States/flame_shield.gd" id="1_xsbkp"]
 [ext_resource type="AudioStream" uid="uid://cbquikvpl71nm" path="res://Audio/Shields/fire_attack.wav" id="2_qbvar"]
 [ext_resource type="Texture2D" uid="uid://qu24ji8gvr5k" path="res://Graphics/Shields/flame_shield.png" id="2_u11cx"]
 [ext_resource type="Texture2D" uid="uid://68o0kxi3awnx" path="res://Graphics/Shields/flame_shield_attack.png" id="3_nr0fy"]
@@ -36,7 +36,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qdsf8"]
 _data = {
-"default": SubResource("Animation_ayooo")
+&"default": SubResource("Animation_ayooo")
 }
 
 [sub_resource type="Animation" id="Animation_5vsb8"]
@@ -58,7 +58,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ntpyl"]
 _data = {
-"default": SubResource("Animation_5vsb8")
+&"default": SubResource("Animation_5vsb8")
 }
 
 [node name="FlameShield" type="Node2D"]
@@ -76,7 +76,7 @@ frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ShieldSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_qdsf8")
+&"": SubResource("AnimationLibrary_qdsf8")
 }
 speed_scale = 3.0
 
@@ -88,6 +88,6 @@ hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AttackingSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_ntpyl")
+&"": SubResource("AnimationLibrary_ntpyl")
 }
 speed_scale = 4.0

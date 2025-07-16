@@ -2,9 +2,6 @@ extends Node2D
 class_name Player
 
 signal ground_enter
-signal score_added
-signal ring_added
-signal life_added
 
 @export var bounds: Array[Resource]
 @export var stats: Array[Resource]

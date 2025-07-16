@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgm3lqibcamr"]
 
-[ext_resource type="Script" path="res://Scripts/Shields/States/thunder_shield.gd" id="1_eid5j"]
+[ext_resource type="Script" uid="uid://dxnbnvy8qsc65" path="res://Scripts/Shields/States/thunder_shield.gd" id="1_eid5j"]
 [ext_resource type="Texture2D" uid="uid://bekcwmmjpnhjx" path="res://Graphics/Shields/thunder_shield.png" id="2_1bgc8"]
 [ext_resource type="AudioStream" uid="uid://ba8nnq3xmamvh" path="res://Audio/Shields/thunder_bounce.wav" id="3_exc23"]
 
@@ -35,7 +35,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ftp2q"]
 _data = {
-"default": SubResource("Animation_07itv")
+&"default": SubResource("Animation_07itv")
 }
 
 [node name="ThunderShield" type="Node2D"]
@@ -52,5 +52,5 @@ vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ShieldSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_ftp2q")
+&"": SubResource("AnimationLibrary_ftp2q")
 }

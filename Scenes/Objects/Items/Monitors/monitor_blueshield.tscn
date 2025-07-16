@@ -1,0 +1,118 @@
+[gd_scene load_steps=16 format=3 uid="uid://dyalkuuw4hecx"]
+
+[ext_resource type="Script" uid="uid://dvm0hjqxjtjjg" path="res://Scripts/Objects/Items/Monitors/monitor.gd" id="1_8ta58"]
+[ext_resource type="PackedScene" uid="uid://bh2utgvcsy3y4" path="res://Scenes/Objects/Items/Monitors/icon.tscn" id="2_0scca"]
+[ext_resource type="AudioStream" uid="uid://dm60o4ru60p7b" path="res://Audio/Objects/Monitors/blue_shield.wav" id="2_2kvva"]
+[ext_resource type="Script" uid="uid://b17fvms7uw7c6" path="res://Scripts/Objects/Items/Effects/Types/shield_effect.gd" id="2_ojcdj"]
+[ext_resource type="Texture2D" uid="uid://uh6k7e11s8ie" path="res://Graphics/Objects/Monitors/monitor.png" id="5_yt1a3"]
+[ext_resource type="Script" uid="uid://hg2cqfc7lqjg" path="res://Scripts/Objects/solid_object.gd" id="8_s7bbv"]
+
+[sub_resource type="Resource" id="Resource_y6j7y"]
+script = ExtResource("2_ojcdj")
+shield_type = "BlueShield"
+audio_jingle = ExtResource("2_2kvva")
+metadata/_custom_type_script = "uid://b17fvms7uw7c6"
+
+[sub_resource type="Animation" id="Animation_vrm0v"]
+resource_name = "destroyed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_ccstj"]
+resource_name = "idle"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v75xa"]
+_data = {
+&"destroyed": SubResource("Animation_vrm0v"),
+&"idle": SubResource("Animation_ccstj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oyatq"]
+animation = &"destroyed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3rkt6"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_2khmp"]
+input_0/name = "0"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "1"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qw55k"]
+graph_offset = Vector2(-243.089, 32.734)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3rkt6")
+nodes/Animation/position = Vector2(80, 80)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_oyatq")
+"nodes/Animation 2/position" = Vector2(60, 220)
+nodes/output/position = Vector2(480, 160)
+nodes/state/node = SubResource("AnimationNodeTransition_2khmp")
+nodes/state/position = Vector2(260, 140)
+node_connections = [&"output", 0, &"state", &"state", 0, &"Animation", &"state", 1, &"Animation 2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de0jl"]
+size = Vector2(28, 32)
+
+[node name="MonitorBlueShield" type="Node2D"]
+script = ExtResource("1_8ta58")
+item_effect = SubResource("Resource_y6j7y")
+ground_layer = 3
+
+[node name="Icon" parent="." instance=ExtResource("2_0scca")]
+frame = 4
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("5_yt1a3")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_v75xa")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprite"]
+tree_root = SubResource("AnimationNodeBlendTree_qw55k")
+anim_player = NodePath("../AnimationPlayer")
+parameters/state/current_state = "0"
+parameters/state/transition_request = ""
+parameters/state/current_index = 0
+
+[node name="SolidObject" type="StaticBody2D" parent="."]
+script = ExtResource("8_s7bbv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SolidObject"]
+shape = SubResource("RectangleShape2D_de0jl")
+
+[connection signal="player_ceiling_collision" from="SolidObject" to="." method="_on_SolidObject_player_ceiling_collision"]
+[connection signal="player_ground_collision" from="SolidObject" to="." method="_on_SolidObject_player_ground_collision"]
+[connection signal="player_left_wall_collision" from="SolidObject" to="." method="_on_SolidObject_player_wall_collision"]
+[connection signal="player_right_wall_collision" from="SolidObject" to="." method="_on_SolidObject_player_wall_collision"]

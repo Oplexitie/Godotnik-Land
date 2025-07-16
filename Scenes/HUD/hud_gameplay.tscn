@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5me1bke7whng"]
 
-[ext_resource type="Script" path="res://Scripts/HUD/hud.gd" id="1_5ea3d"]
+[ext_resource type="Script" uid="uid://chfjrgcpd6228" path="res://Scripts/HUD/hud.gd" id="1_5ea3d"]
 [ext_resource type="Texture2D" uid="uid://ch0yve7vs4yhc" path="res://Graphics/HUD/hud.png" id="2_yne8w"]
 [ext_resource type="FontFile" uid="uid://db6nsl0ai0mjo" path="res://Fonts/hud_numbers.fnt" id="3_0pvo8"]
 [ext_resource type="Texture2D" uid="uid://8ejmrtjnvs7e" path="res://Graphics/HUD/lifes.png" id="4_hup3w"]

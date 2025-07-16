@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://djjoh82lohape"]
+
+[ext_resource type="Texture2D" uid="uid://m283sfjo2im8" path="res://Graphics/Particles/ring_sparkle.png" id="1_0glwy"]
+[ext_resource type="Script" uid="uid://g0bu83d03te3" path="res://Scripts/Particles/particle.gd" id="2_yctxs"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f1h24"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_tbci0"]
+resource_name = "default"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_00h1q"]
+_data = {
+&"default": SubResource("Animation_tbci0")
+}
+
+[node name="RingSparkle" type="Sprite2D"]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_f1h24")
+texture = ExtResource("1_0glwy")
+hframes = 4
+script = ExtResource("2_yctxs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_00h1q")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

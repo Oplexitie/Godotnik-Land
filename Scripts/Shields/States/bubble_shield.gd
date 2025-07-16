@@ -1,7 +1,7 @@
 extends Shield
 
 @export var down_force: float = 480
-@export var bounce_force: float = 450
+@export var max_bounce_force: float = 450
 @export var min_bounce_force: float = 240
 
 @onready var shield_sprite: Sprite2D = $ShieldSprite
@@ -12,54 +12,53 @@ extends Shield
 
 var is_bouncing: bool = false
 
-func on_activate():
-	shield_animation_player.play("default")
-	effect_animation_player.play("default")
+func on_activate() -> void:
 	shield_user.ground_enter.connect(on_user_ground_enter)
 	is_bouncing = false
 	shield_sprite.visible = true
 	effect_sprite.visible = true
+	shield_animation_player.play("default")
+	effect_animation_player.play("default")
 
-func on_deactivate():
+func on_deactivate() -> void:
 	shield_user.ground_enter.disconnect(on_user_ground_enter)
 	shield_sprite.visible = false
 	effect_sprite.visible = false
 	shield_animation_player.stop()
 	effect_animation_player.stop()
 
-func on_action():
+func on_action() -> void:
 	shield_user.velocity.x /= 2
 	shield_user.velocity.y += down_force
 	
-	shield_animation_player.play("bounce")
 	is_bouncing = true
 	effect_sprite.visible = false
+	shield_animation_player.play("bounce")
+	effect_animation_player.stop()
 
-func on_user_ground_enter():
+func on_user_ground_enter() -> void:
 	if is_bouncing:
-		shield_animation_player.play("bounce_back")
-		is_bouncing = false
 		AudioManager.play_sfx(action_audio)
+		
+		is_bouncing = false
 		shield_user.is_jumping = true
 		shield_user.is_rolling = true
+		shield_animation_player.play("bounce_back")
 		
 		var ground_angle: float = GoUtils.get_radian_from(shield_user.ground_normal)
+		var is_bounce_press: bool = Input.is_action_pressed("player_a")
+		var bounce_force: float = max_bounce_force if is_bounce_press else min_bounce_force
 		
-		if Input.is_action_pressed("player_a"):
-			shield_user.velocity.x -= bounce_force * sin(ground_angle)
-			shield_user.velocity.y -= bounce_force * cos(ground_angle)
-		else:
-			shield_user.velocity.x -= min_bounce_force * sin(ground_angle)
-			shield_user.velocity.y -= min_bounce_force * cos(ground_angle)
+		shield_user.velocity.x -= bounce_force * sin(ground_angle)
+		shield_user.velocity.y -= bounce_force * cos(ground_angle)
 
-func cancel_action():
+func cancel_action() -> void:
 	if is_bouncing:
-		shield_animation_player.play("bounce_back")
 		is_bouncing = false
+		shield_animation_player.play("bounce_back")
 
-func _on_bubble_bounce_finished(anim_name):
+func _on_bubble_bounce_finished(anim_name) -> void:
 	if anim_name == "bounce_back":
-		effect_animation_player.stop()
 		effect_sprite.visible = true
 		effect_animation_player.play("default")
 		shield_animation_player.play("default")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://blumv7jgomxy"]
 
-[ext_resource type="Script" path="res://Scripts/Particles/particle.gd" id="1_orobh"]
+[ext_resource type="Script" uid="uid://g0bu83d03te3" path="res://Scripts/Particles/particle.gd" id="1_orobh"]
 [ext_resource type="Texture2D" uid="uid://crqbbq3364oli" path="res://Graphics/Particles/thundershield_sparks.png" id="2_6rdnt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvv4h"]
@@ -82,7 +82,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6w8kv"]
 _data = {
-"default": SubResource("Animation_ybcqq")
+&"default": SubResource("Animation_ybcqq")
 }
 
 [node name="ThunderShieldSparks" type="Node2D"]

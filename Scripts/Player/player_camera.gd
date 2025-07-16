@@ -36,8 +36,8 @@ func set_limits(left: int, right: int, top: int, bottom: int):
 	limit_bottom = bottom
 
 func handle_vertical_borders(delta: float):
-	var cam_offset = ((abs(position.y - get_target_position().y)) / V_MARGIN)
-	var not_grounded = 1 if !player.is_grounded() else 0
+	var cam_offset: float = ((abs(position.y - get_target_position().y)) / V_MARGIN)
+	var not_grounded: int = 1 if !player.is_grounded() else 0
 	cam_drag_lerp = max(not_grounded, min(cam_drag_lerp, cam_offset) - speed * delta)
 	
 	drag_top_margin = lerp(0.0, FULL_V_MARGIN / viewSize.y, cam_drag_lerp)
