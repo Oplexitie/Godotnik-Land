@@ -21,10 +21,9 @@ func on_deactivate() -> void:
 	attacking_animation_player.stop()
 
 func on_action() -> void:
-	var direction = -1 if shield_user.skin.flip_h else 1
-	shield_user.velocity.x = horizontal_force * direction
-	shield_user.velocity.y = 0
-	attacking_sprite.offset.x = attacking_sprite_offset * direction
+	var direction: Vector2 = Vector2.LEFT if shield_user.skin.flip_h else Vector2.RIGHT
+	shield_user.velocity = direction * horizontal_force
+	attacking_sprite.offset.x = attacking_sprite_offset * direction.x
 	attacking_sprite.flip_h = shield_user.skin.flip_h
 	set_attacking(true)
 

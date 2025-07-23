@@ -1,6 +1,4 @@
 extends Node2D
-class_name PlayerAudio
+class_name PlayerSFX
 
-@export var jump_audio: AudioStream
-@export var brake_audio: AudioStream
-@export var spin_audio: AudioStream
+@export var sfx_list: Dictionary[String,AudioStream]

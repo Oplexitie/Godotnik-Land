@@ -11,10 +11,10 @@ class_name HUD
 
 @onready var hud_manager: HudManager = get_parent()
 
-func _ready():
+func _ready() -> void:
 	initialize_labels()
 
-func _process(_delta):
+func _process(_delta) -> void:
 	var time: float = hud_manager.time
 	var minutes:int = int(time / 60)
 	var seconds:int = int(time) % 60
@@ -24,16 +24,16 @@ func _process(_delta):
 	seconds_label.text = "%02d" % seconds
 	milliseconds_label.text = "%02d" % milliseconds
 
-func initialize_labels():
+func initialize_labels() -> void:
 	score_label.text = str(hud_manager.score)
 	rings_label.text = str(hud_manager.rings)
 	lifes_label.text = str(hud_manager.lives)
 
-func on_score_added(score: int):
+func on_score_added(score: int) -> void:
 	score_label.text = str(score)
 
-func on_ring_added(rings: int):
+func on_ring_added(rings: int) -> void:
 	rings_label.text = str(rings)
 
-func on_life_added(lifes: int):
+func on_life_added(lifes: int) -> void:
 	lifes_label.text = str(lifes)

@@ -1,22 +1,22 @@
 extends Node2D
 class_name ShieldsManager
 
+var current_shield: Shield
+
 @onready var shields: Dictionary = {
-	"None": null,
-	"InstaShield": $InstaShield,
-	"BlueShield": $BlueShield,
-	"ThunderShield": $ThunderShield,
-	"FlameShield": $FlameShield,
-	"BubbleShield": $BubbleShield
+	"None": null
 }
 
 @onready var shield_user: Player = get_parent()
 @onready var default_shield: String = "InstaShield"
 
-var current_shield: Shield
-
 func _ready() -> void:
+	initialize_shields()
 	change(default_shield)
+
+func initialize_shields() -> void:
+	for shield in get_children():
+		shields[shield.name] = shield
 
 func change(to: String) -> void:
 	if current_shield:

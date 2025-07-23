@@ -6,7 +6,7 @@ class_name PlayerLayerController
 @export_flags_2d_physics var ceiling_layer: int = 1
 
 func _on_Area2D_area_entered(area):
-	var player = area.get_parent()
+	var player: Variant = area.get_parent()
 	
 	if player is Player:
 		player.wall_layer = wall_layer

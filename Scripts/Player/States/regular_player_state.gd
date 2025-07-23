@@ -1,27 +1,32 @@
 extends PlayerState
 class_name RegularPlayerState
 
-func enter(player: Player):
+func enter(player: Player) -> void:
 	player.set_bounds(0)
 
-func step(player: Player, delta: float):
+func step(player: Player, delta: float) -> void:
 	player.handle_fall()
 	player.handle_gravity(delta)
 	player.handle_jump()
 	player.handle_slope(delta)
 	player.handle_acceleration(delta)
 	player.handle_friction(delta)
-
+	
 	if player.is_grounded():
 		if player.input_dot_velocity < 0 and abs(player.velocity.x) >= player.current_stats.min_speed_to_brake:
 			player.state_machine.change_state("Braking")
-		if !abs(player.input_direction.x):
+		
+		if abs(player.input_direction.x):
+			if player.absolute_ground_angle < GoUtils.SHALLOW_ANGLE:
+				var is_on_wall_front: bool = player.is_on_wall_left if player.input_direction.x < 0 else player.is_on_wall_right
+				player.is_pushing = is_on_wall_front
+		else:
 			if player.input_direction.y < 0 and abs(player.velocity.x) > player.current_stats.min_speed_to_roll:
 				player.state_machine.change_state("Rolling")
 	else:
 		player.state_machine.change_state("Air")
 
-func animate(player: Player, _delta: float):
+func animate(player: Player, _delta: float) -> void:
 	var absolute_speed: float = abs(player.velocity.x)
 	
 	player.skin.handle_flip(player.input_direction.x)
@@ -29,24 +34,19 @@ func animate(player: Player, _delta: float):
 	
 	if absolute_speed >= 0.3:
 		player.skin.set_running_animation_state(absolute_speed)
-	elif !abs(player.input_direction.x) and player.absolute_ground_angle < GoUtils.SHALLOW_ANGLE:
-		player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.idle)
-		
-		var is_left: bool = player.skin.flip_h
-		if !player.isnt_grounded_center: return
-		
-		if player.isnt_grounded_right:
-			if is_left:
-				player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.balance_back)
-			else:
-				player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.balance_front)
-		elif player.isnt_grounded_left:
-			if !is_left:
-				player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.balance_back)
-			else:
-				player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.balance_front)
 	else:
-		player.skin.set_running_animation_state(absolute_speed)
-	
-	if player.is_pushing and player.absolute_ground_angle < GoUtils.SHALLOW_ANGLE:
-		player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.push)
+		player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.idle)
+		set_balance_animation_state(player)
+		
+		if player.is_pushing:
+			player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.push)
+
+func set_balance_animation_state(player: Player) -> void:
+		if player.is_grounded_center: return
+		var is_facing_left: bool = player.skin.flip_h
+		var is_grounded_front: bool = player.is_grounded_left if is_facing_left else player.is_grounded_right
+
+		if not is_grounded_front:
+			player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.balance_front)
+		else:
+			player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.balance_back)

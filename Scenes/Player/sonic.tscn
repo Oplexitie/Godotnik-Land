@@ -18,10 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://dhasslaqh2xav" path="res://Scenes/Shields/bubble_shield.tscn" id="14_yjkmx"]
 [ext_resource type="PackedScene" uid="uid://dlb7yejd1l75p" path="res://Scenes/Shields/flame_shield.tscn" id="15_u0anh"]
 [ext_resource type="PackedScene" uid="uid://bgm3lqibcamr" path="res://Scenes/Shields/thunder_shield.tscn" id="16_coh76"]
-[ext_resource type="Script" uid="uid://bele1jgv43jk3" path="res://Scripts/Player/player_audio.gd" id="17_06wxb"]
 [ext_resource type="AudioStream" uid="uid://0t0s6laxbtvf" path="res://Audio/Player/jump.wav" id="18_x16jb"]
 [ext_resource type="AudioStream" uid="uid://cn3sh8cyf6vo7" path="res://Audio/Player/brake.wav" id="19_ijvsx"]
 [ext_resource type="AudioStream" uid="uid://b2btiw0b1gpyj" path="res://Audio/Player/spin.wav" id="20_14gyk"]
+[ext_resource type="Script" uid="uid://bele1jgv43jk3" path="res://Scripts/Player/player_audio.gd" id="20_c4v48"]
 
 [sub_resource type="Animation" id="Animation_7lauf"]
 resource_name = "balance_back"
@@ -281,7 +281,6 @@ input_9/reset = true
 animation = &"walking"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ioxmj"]
-graph_offset = Vector2(-496.209, 52.525)
 nodes/balance_back/node = SubResource("AnimationNodeAnimation_kj1wh")
 nodes/balance_back/position = Vector2(-80, 800)
 nodes/balance_front/node = SubResource("AnimationNodeAnimation_p4cyd")
@@ -346,11 +345,13 @@ script = ExtResource("11_i16pf")
 
 [node name="ThunderShield" parent="Shields" instance=ExtResource("16_coh76")]
 
-[node name="Audios" type="Node2D" parent="."]
-script = ExtResource("17_06wxb")
-jump_audio = ExtResource("18_x16jb")
-brake_audio = ExtResource("19_ijvsx")
-spin_audio = ExtResource("20_14gyk")
+[node name="SFX" type="Node2D" parent="."]
+script = ExtResource("20_c4v48")
+sfx_list = Dictionary[String, AudioStream]({
+"brake": ExtResource("19_ijvsx"),
+"jump": ExtResource("18_x16jb"),
+"spin": ExtResource("20_14gyk")
+})
 
 [node name="Skin" type="Sprite2D" parent="."]
 texture = ExtResource("12_g5b1j")

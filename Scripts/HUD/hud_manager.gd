@@ -17,7 +17,7 @@ var time_stoped: bool
 func _ready() -> void:
 	initialize_signals()
 
-func _process(delta):
+func _process(delta) -> void:
 	handle_time(delta)
 
 func initialize_signals() -> void:
@@ -25,7 +25,7 @@ func initialize_signals() -> void:
 	EventBus.add_signal("add_ring",add_ring)
 	EventBus.add_signal("add_life",add_life)
 
-func handle_time(delta: float):
+func handle_time(delta: float) -> void:
 	if not time_stoped:
 		var next_time: float = time + delta
 		if (next_time < TIME_LIMIT):
@@ -34,17 +34,17 @@ func handle_time(delta: float):
 			time_stoped = true
 			emit_signal("time_over")
 
-func add_score(amount = 1):
+func add_score(amount = 1) -> void:
 	if amount > 0:
 		score += amount
 		gameplay_hud.on_score_added(score)
 
-func add_ring(amount = 1):
+func add_ring(amount = 1) -> void:
 	if amount > 0:
 		rings += amount
 		gameplay_hud.on_ring_added(rings)
 
-func add_life(amount = 1):
+func add_life(amount = 1) -> void:
 	if amount > 0:
 		lives += amount
 		gameplay_hud.on_life_added(lives)

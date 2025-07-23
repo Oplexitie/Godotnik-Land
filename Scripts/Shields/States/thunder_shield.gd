@@ -5,7 +5,7 @@ class_name ThunderShield
 
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var shield_animation_player: AnimationPlayer = $ShieldSprite/AnimationPlayer
-@onready var particle: PackedScene = preload("res://Scenes/Particles/thundershield_sparks.tscn")
+@onready var spark_particle: PackedScene = preload("res://Scenes/Particles/thundershield_sparks.tscn")
 
 func on_activate() -> void:
 	shield_sprite.visible = true
@@ -17,7 +17,7 @@ func on_deactivate() -> void:
 
 func on_action() -> void:
 	shield_user.velocity.y = vertical_force
-	var sparks = particle.instantiate()
-	sparks.global_position = shield_user.global_position
-	shield_user.add_sibling(sparks)
-	sparks.play()
+	var particle: Particle = spark_particle.instantiate()
+	particle.global_position = shield_user.global_position
+	shield_user.add_sibling(particle)
+	particle.play()

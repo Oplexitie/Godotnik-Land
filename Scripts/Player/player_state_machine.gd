@@ -3,11 +3,11 @@ class_name PlayerStateMachine
 
 @export var initial_state: String = "Regular"
 
-@onready var player: Player = get_parent()
-
 var states: Dictionary[String, Node2D]
 var current_state: String
 var last_state: String
+
+@onready var player: Player = get_parent()
 
 func initialize() -> void:
 	initialize_states()

@@ -4,14 +4,14 @@ class_name AirPlayerState
 var last_absolute_horizontal_speed: float
 var can_use_shield: bool
 
-func enter(player: Player):
+func enter(player: Player) -> void:
 	can_use_shield = player.is_rolling
 	last_absolute_horizontal_speed = abs(player.velocity.x)
 	
 	if player.is_rolling:
 		player.set_bounds(1)
 
-func step(player: Player, delta: float):
+func step(player: Player, delta: float) -> void:
 	player.handle_gravity(delta)
 	player.handle_acceleration(delta)
 	player.handle_deceleration(delta)
@@ -27,7 +27,7 @@ func step(player: Player, delta: float):
 	
 	player.handle_jump()
 
-func animate(player: Player, _delta: float):
+func animate(player: Player, _delta: float) -> void:
 	player.skin.handle_flip(player.input_direction.x)
 
 	if player.is_rolling:

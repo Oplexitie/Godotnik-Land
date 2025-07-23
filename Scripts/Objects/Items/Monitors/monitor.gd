@@ -9,15 +9,15 @@ const GROUND_DISTANCE: int = 16
 @export var particle_offset: Vector2 = Vector2(0,-4)
 @export_flags_2d_physics var ground_layer: int = 1
 
+var velocity: Vector2
+var allow_movement: bool
+
 @onready var world: World2D = get_world_2d()
 @onready var icon: Sprite2D = $Icon
 @onready var solid_object: StaticBody2D = $SolidObject
 @onready var animation_tree: AnimationTree = $Sprite/AnimationTree
 @onready var explosion: PackedScene = preload("uid://b72awigk0020g")
 @onready var explosion_audio: AudioStream = preload("res://Audio/Objects/explosion.wav")
-
-var velocity: Vector2
-var allow_movement: bool
 
 func _physics_process(delta) -> void:
 	if allow_movement:

@@ -4,13 +4,13 @@ extends Shield
 @export var max_bounce_force: float = 450
 @export var min_bounce_force: float = 240
 
+var is_bouncing: bool = false
+
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var effect_sprite: Sprite2D  = $EffectSprite
 
 @onready var shield_animation_player: AnimationPlayer = $ShieldSprite/AnimationPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectSprite/AnimationPlayer
-
-var is_bouncing: bool = false
 
 func on_activate() -> void:
 	shield_user.ground_enter.connect(on_user_ground_enter)
