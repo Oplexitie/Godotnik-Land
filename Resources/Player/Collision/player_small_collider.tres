@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerCollision" load_steps=2 format=3 uid="uid://dedpvf2mtys8x"]
 
-[ext_resource type="Script" uid="uid://d1sxoc8tachek" path="res://Scripts/Player/Ressources/player_collision.gd" id="1_3f6wl"]
+[ext_resource type="Script" uid="uid://d1sxoc8tachek" path="res://Scripts/Entities/Player/Ressources/player_collision.gd" id="1_3f6wl"]
 
 [resource]
 script = ExtResource("1_3f6wl")

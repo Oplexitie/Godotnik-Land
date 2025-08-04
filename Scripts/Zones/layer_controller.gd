@@ -1,5 +1,5 @@
 extends Area2D
-class_name PlayerLayerController
+class_name LayerController
 
 @export_flags_2d_physics var wall_layer: int = 1
 @export_flags_2d_physics var ground_layer: int = 1

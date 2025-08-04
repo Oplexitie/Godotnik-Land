@@ -1,17 +1,16 @@
-extends PlayerState
-class_name AirPlayerState
+extends State
 
 var last_absolute_horizontal_speed: float
 var can_use_shield: bool
 
-func enter(player: Player) -> void:
+func enter(player: Node) -> void:
 	can_use_shield = player.is_rolling
 	last_absolute_horizontal_speed = abs(player.velocity.x)
 	
 	if player.is_rolling:
 		player.set_bounds(1)
 
-func step(player: Player, delta: float) -> void:
+func step(player: Node, delta: float) -> void:
 	player.handle_gravity(delta)
 	player.handle_acceleration(delta)
 	player.handle_deceleration(delta)
@@ -27,11 +26,11 @@ func step(player: Player, delta: float) -> void:
 	
 	player.handle_jump()
 
-func animate(player: Player, _delta: float) -> void:
+func animate(player: Node, _delta: float) -> void:
 	player.skin.handle_flip(player.input_direction.x)
 
 	if player.is_rolling:
-		player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.rolling)
+		player.skin.set_animation_state(player.skin.animation_states.rolling)
 		player.skin.set_rolling_animation_speed(last_absolute_horizontal_speed)
 	elif player.state_machine.last_state == "Spring" or player.state_machine.last_state == "Braking":
-		player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.walking)
+		player.skin.set_animation_state(player.skin.animation_states.walking)

@@ -1,10 +1,9 @@
-extends PlayerState
-class_name RegularPlayerState
+extends State
 
-func enter(player: Player) -> void:
+func enter(player: Node) -> void:
 	player.set_bounds(0)
 
-func step(player: Player, delta: float) -> void:
+func step(player: Node, delta: float) -> void:
 	player.handle_fall()
 	player.handle_gravity(delta)
 	player.handle_jump()
@@ -21,12 +20,13 @@ func step(player: Player, delta: float) -> void:
 				var is_on_wall_front: bool = player.is_on_wall_left if player.input_direction.x < 0 else player.is_on_wall_right
 				player.is_pushing = is_on_wall_front
 		else:
+			player.is_pushing = false
 			if player.input_direction.y < 0 and abs(player.velocity.x) > player.current_stats.min_speed_to_roll:
 				player.state_machine.change_state("Rolling")
 	else:
 		player.state_machine.change_state("Air")
 
-func animate(player: Player, _delta: float) -> void:
+func animate(player: Node, _delta: float) -> void:
 	var absolute_speed: float = abs(player.velocity.x)
 	
 	player.skin.handle_flip(player.input_direction.x)
@@ -35,18 +35,18 @@ func animate(player: Player, _delta: float) -> void:
 	if absolute_speed >= 0.3:
 		player.skin.set_running_animation_state(absolute_speed)
 	else:
-		player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.idle)
+		player.skin.set_animation_state(player.skin.animation_states.idle)
 		set_balance_animation_state(player)
 		
 		if player.is_pushing:
-			player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.push)
+			player.skin.set_animation_state(player.skin.animation_states.push)
 
-func set_balance_animation_state(player: Player) -> void:
+func set_balance_animation_state(player: Node) -> void:
 		if player.is_grounded_center: return
 		var is_facing_left: bool = player.skin.flip_h
 		var is_grounded_front: bool = player.is_grounded_left if is_facing_left else player.is_grounded_right
 
 		if not is_grounded_front:
-			player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.balance_front)
+			player.skin.set_animation_state(player.skin.animation_states.balance_front)
 		else:
-			player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.balance_back)
+			player.skin.set_animation_state(player.skin.animation_states.balance_back)

@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 func has_signal_call(s_name: StringName, s_callable: Callable) -> bool:
 	return has_user_signal(s_name) and is_connected(s_name, s_callable)

@@ -1,4 +1,4 @@
-extends Node
+extends Object
 class_name GoUtils
 
 const SHALLOW_ANGLE: int = 23

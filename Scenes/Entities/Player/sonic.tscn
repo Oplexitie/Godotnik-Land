@@ -1,16 +1,16 @@
 [gd_scene load_steps=47 format=3 uid="uid://bca4qab41vad"]
 
-[ext_resource type="Script" uid="uid://b50lttjglbbl6" path="res://Scripts/Player/player.gd" id="1_as1of"]
+[ext_resource type="Script" uid="uid://b50lttjglbbl6" path="res://Scripts/Entities/Player/player.gd" id="1_as1of"]
 [ext_resource type="Resource" uid="uid://dk5ioa4wl405e" path="res://Resources/Player/Collision/player_normal_collider.tres" id="2_2o7k1"]
-[ext_resource type="Script" uid="uid://v5l0if1yegyn" path="res://Scripts/Player/player_skin.gd" id="2_b8ilv"]
+[ext_resource type="Script" uid="uid://v5l0if1yegyn" path="res://Scripts/Entities/Player/player_skin.gd" id="2_b8ilv"]
 [ext_resource type="Resource" uid="uid://dedpvf2mtys8x" path="res://Resources/Player/Collision/player_small_collider.tres" id="3_my7ga"]
 [ext_resource type="Resource" uid="uid://dgabxi0sety0a" path="res://Resources/Player/Stats/sonic_stats.tres" id="4_27jja"]
-[ext_resource type="Script" uid="uid://ch0xop353bnay" path="res://Scripts/Player/player_state_machine.gd" id="5_1nibi"]
-[ext_resource type="Script" uid="uid://d03b6fyayoxqe" path="res://Scripts/Player/States/regular_player_state.gd" id="6_cjj8w"]
-[ext_resource type="Script" uid="uid://bl1aq8dxn5f2o" path="res://Scripts/Player/States/rolling_player_state.gd" id="7_vphac"]
-[ext_resource type="Script" uid="uid://cl5w1x7eci6f4" path="res://Scripts/Player/States/braking_player_state.gd" id="8_or0v3"]
-[ext_resource type="Script" uid="uid://s55avb8flkav" path="res://Scripts/Player/States/air_player_state.gd" id="9_noakl"]
-[ext_resource type="Script" uid="uid://choh76rorunx8" path="res://Scripts/Player/States/spring_player_state.gd" id="10_hpg18"]
+[ext_resource type="Script" uid="uid://ch0xop353bnay" path="res://Scripts/Misc/state_machine.gd" id="5_1nibi"]
+[ext_resource type="Script" uid="uid://d03b6fyayoxqe" path="res://Scripts/Entities/Player/States/regular_player_state.gd" id="6_cjj8w"]
+[ext_resource type="Script" uid="uid://bl1aq8dxn5f2o" path="res://Scripts/Entities/Player/States/rolling_player_state.gd" id="7_vphac"]
+[ext_resource type="Script" uid="uid://cl5w1x7eci6f4" path="res://Scripts/Entities/Player/States/braking_player_state.gd" id="8_or0v3"]
+[ext_resource type="Script" uid="uid://s55avb8flkav" path="res://Scripts/Entities/Player/States/air_player_state.gd" id="9_noakl"]
+[ext_resource type="Script" uid="uid://choh76rorunx8" path="res://Scripts/Entities/Player/States/spring_player_state.gd" id="10_hpg18"]
 [ext_resource type="Script" uid="uid://wtkgui8indj" path="res://Scripts/Shields/shields_manager.gd" id="11_i16pf"]
 [ext_resource type="PackedScene" uid="uid://cnq81lphj4gy3" path="res://Scenes/Shields/insta_shield.tscn" id="12_5cv2y"]
 [ext_resource type="Texture2D" uid="uid://1pivom1edi72" path="res://Graphics/Player/sonic.png" id="12_g5b1j"]
@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://0t0s6laxbtvf" path="res://Audio/Player/jump.wav" id="18_x16jb"]
 [ext_resource type="AudioStream" uid="uid://cn3sh8cyf6vo7" path="res://Audio/Player/brake.wav" id="19_ijvsx"]
 [ext_resource type="AudioStream" uid="uid://b2btiw0b1gpyj" path="res://Audio/Player/spin.wav" id="20_14gyk"]
-[ext_resource type="Script" uid="uid://bele1jgv43jk3" path="res://Scripts/Player/player_audio.gd" id="20_c4v48"]
+[ext_resource type="Script" uid="uid://bele1jgv43jk3" path="res://Scripts/Misc/sfx_data.gd" id="20_c4v48"]
 
 [sub_resource type="Animation" id="Animation_7lauf"]
 resource_name = "balance_back"
@@ -314,22 +314,22 @@ bounds = Array[Resource]([ExtResource("2_2o7k1"), ExtResource("3_my7ga")])
 stats = Array[Resource]([ExtResource("4_27jja")])
 ground_layer = 3
 
-[node name="StateMachine" type="Node2D" parent="."]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_1nibi")
 
-[node name="Regular" type="Node2D" parent="StateMachine"]
+[node name="Regular" type="Node" parent="StateMachine"]
 script = ExtResource("6_cjj8w")
 
-[node name="Rolling" type="Node2D" parent="StateMachine"]
+[node name="Rolling" type="Node" parent="StateMachine"]
 script = ExtResource("7_vphac")
 
-[node name="Braking" type="Node2D" parent="StateMachine"]
+[node name="Braking" type="Node" parent="StateMachine"]
 script = ExtResource("8_or0v3")
 
-[node name="Air" type="Node2D" parent="StateMachine"]
+[node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("9_noakl")
 
-[node name="Spring" type="Node2D" parent="StateMachine"]
+[node name="Spring" type="Node" parent="StateMachine"]
 script = ExtResource("10_hpg18")
 
 [node name="Shields" type="Node2D" parent="."]
@@ -345,7 +345,7 @@ script = ExtResource("11_i16pf")
 
 [node name="ThunderShield" parent="Shields" instance=ExtResource("16_coh76")]
 
-[node name="SFX" type="Node2D" parent="."]
+[node name="SFX" type="Node" parent="."]
 script = ExtResource("20_c4v48")
 sfx_list = Dictionary[String, AudioStream]({
 "brake": ExtResource("19_ijvsx"),
@@ -358,6 +358,18 @@ texture = ExtResource("12_g5b1j")
 hframes = 10
 vframes = 10
 script = ExtResource("2_b8ilv")
+animation_states = Dictionary[String, int]({
+"balance_back": 8,
+"balance_front": 7,
+"corkscrew": 6,
+"idle": 0,
+"peel_out": 3,
+"push": 9,
+"rolling": 4,
+"running": 2,
+"skidding": 5,
+"walking": 1
+})
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Skin"]
 libraries = {

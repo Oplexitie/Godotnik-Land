@@ -43,8 +43,8 @@ var is_grounded_center: bool = true
 var is_control_locked: bool
 var is_locked_to_limits: bool
 
-@onready var skin: PlayerSkin = $Skin
-@onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var skin: EntitySkin = $Skin
+@onready var state_machine: StateMachine = $StateMachine
 @onready var shields: ShieldsManager = $Shields
 @onready var sfx: Dictionary[String,AudioStream] = $SFX.sfx_list
 @onready var initial_parent = get_parent()

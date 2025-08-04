@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dibfi0jc0cte7"]
 
-[ext_resource type="Script" uid="uid://txdw6fcopb3g" path="res://Scripts/Player/player_camera.gd" id="1_bir74"]
+[ext_resource type="Script" uid="uid://txdw6fcopb3g" path="res://Scripts/Entities/Player/player_camera.gd" id="1_bir74"]
 
 [node name="Camera2D" type="Camera2D"]
 drag_horizontal_enabled = true

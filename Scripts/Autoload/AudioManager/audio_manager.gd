@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 var audio_music: PoolBGM = PoolBGM.new("Music", 1)
 var audio_sfx: PoolSFX = PoolSFX.new("SFX", 4)

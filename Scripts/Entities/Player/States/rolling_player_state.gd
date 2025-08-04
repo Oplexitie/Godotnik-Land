@@ -1,13 +1,12 @@
-extends PlayerState
-class_name RollingPlayerState
+extends State
 
-func enter(player: Player) -> void:
+func enter(player: Node) -> void:
 	player.skin.rotation = 0
 	player.is_rolling = true
 	AudioManager.play_sfx(player.sfx.spin)
 	player.set_bounds(1)
 
-func step(player: Player, delta: float) -> void:
+func step(player: Node, delta: float) -> void:
 	player.handle_fall()
 	player.handle_gravity(delta)
 	player.handle_jump()
@@ -22,6 +21,6 @@ func step(player: Player, delta: float) -> void:
 	else:
 		player.state_machine.change_state("Air")
 
-func animate(player: Player, _delta: float) -> void:
-	player.skin.set_animation_state(PlayerSkin.ANIMATION_STATES.rolling)
+func animate(player: Node, _delta: float) -> void:
+	player.skin.set_animation_state(player.skin.animation_states.rolling)
 	player.skin.set_rolling_animation_speed(abs(player.velocity.x))
